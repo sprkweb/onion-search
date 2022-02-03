@@ -1,4 +1,4 @@
-import time
+from datetime import datetime, timezone
 import scrapy
 
 from crawler.items import CrawlerItem
@@ -10,7 +10,7 @@ class TorSpider(scrapy.Spider):
     def parse(self, response):
         item = CrawlerItem()
         item['link'] = response.url
-        item['last_updated'] = time.time()
+        item['last_updated'] = datetime.now().astimezone(timezone.utc).isoformat()
         item['title'] = response.css('title::text').get()
         item['description'] = response.css('meta[name=description]::attr(content)').get()
         item['keywords'] = ', '.join(response.css('meta[name=keywords]::attr(content), h1::text, h2::text, h3::text, b::text, strong::text').getall())
@@ -20,3 +20,4 @@ class TorSpider(scrapy.Spider):
         for link in response.css('a::attr(href)').getall():
             if link.startswith('http') and '.onion' in link:
                 yield response.follow(link, self.parse)
+                pass

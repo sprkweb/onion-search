@@ -1,14 +1,18 @@
+from dotenv import load_dotenv
+
+load_dotenv()
+
 BOT_NAME = 'crawler'
 
 SPIDER_MODULES = ['crawler.spiders']
 NEWSPIDER_MODULE = 'crawler.spiders'
 
 
-# JOBDIR = 'crawls/torspider-1'
-DEPTH_LIMIT = 1
+JOBDIR = 'crawls/torspider-1'
+# DEPTH_LIMIT = 1
 
 CONCURRENT_REQUESTS = 8
-DOWNLOAD_DELAY = 0.25
+DOWNLOAD_DELAY = 0.5
 #CONCURRENT_REQUESTS_PER_IP = 16
 REACTOR_THREADPOOL_MAXSIZE = 20
 LOG_LEVEL = 'INFO'
@@ -33,9 +37,9 @@ DOWNLOADER_MIDDLEWARES = {
 #    'scrapy.extensions.telnet.TelnetConsole': None,
 #}
 
-#ITEM_PIPELINES = {
-#    'crawler.pipelines.CrawlerPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'crawler.pipelines.ElasticSearchPipeline': 100,
+}
 
 #AUTOTHROTTLE_ENABLED = True
 #AUTOTHROTTLE_START_DELAY = 5
