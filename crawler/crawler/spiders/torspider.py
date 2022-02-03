@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+from scrapy.linkextractors import LinkExtractor
 import scrapy
 
 from crawler.items import CrawlerItem
@@ -6,6 +7,7 @@ from crawler.items import CrawlerItem
 class TorSpider(scrapy.Spider):
     name = 'torspider'
     start_urls = ['http://torcatalog.com']
+    link_extractor = LinkExtractor(allow='.onion')
 
     def parse(self, response):
         item = CrawlerItem()
@@ -17,7 +19,5 @@ class TorSpider(scrapy.Spider):
         item['text'] = ' '.join(response.css('body *::text').getall())
         yield item
 
-        for link in response.css('a::attr(href)').getall():
-            if link.startswith('http') and '.onion' in link:
-                yield response.follow(link, self.parse)
-                pass
+        for link in self.link_extractor.extract_links(response):
+            yield scrapy.http.Request(link.url, callback=self.parse)
