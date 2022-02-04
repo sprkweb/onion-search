@@ -1,6 +1,7 @@
 .env
 output.jl
 __pycache__/
+package
 .scrapy
 crawls
 .snowpack
