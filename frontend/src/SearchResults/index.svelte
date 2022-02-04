@@ -1,7 +1,7 @@
 <script lang="ts">
   import { query } from '@/stores'
 
-  const apiUrl = __SNOWPACK_ENV__.SNOWPACK_PUBLIC_API_URL
+  const apiUrl = 'https://qcsxorzpfj.execute-api.eu-central-1.amazonaws.com/goognion-api-prototype'
 
   let results: Array<{
       _id: string,
