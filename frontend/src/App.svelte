@@ -1,9 +1,11 @@
 <script lang="ts">
   import SearchForm from '@/SearchForm/index.svelte';
+  import SearchResults from '@/SearchResults/index.svelte';
 </script>
 
 <div class="App centralized">
   <SearchForm />
+  <SearchResults />
 </div>
 
 <style>
@@ -15,9 +17,8 @@
 
   :global(body) {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 1.5;
-    background-color: rgb(240, 240, 240);
   }
 
   .App {
@@ -26,6 +27,7 @@
     box-sizing: border-box;
     align-items: center;
     padding: 1rem;
+    gap: 1rem;
   }
 
   .App.centralized {
