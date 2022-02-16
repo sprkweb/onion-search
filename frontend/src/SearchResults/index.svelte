@@ -1,7 +1,7 @@
 <script lang="ts">
   import { query } from '@/stores'
 
-  const apiUrl = 'https://qcsxorzpfj.execute-api.eu-central-1.amazonaws.com/goognion-api-prototype'
+  const apiUrl = 'https://y8mqnqry27.execute-api.eu-central-1.amazonaws.com/prod/'
 
   let results: Array<{
       _id: string,
